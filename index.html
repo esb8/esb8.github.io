@@ -3,39 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Website</title>
-
-  <!-- Link CSS -->
+  <title>Projects</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="app">
 
-  <header class="site-header">
-    <h1>My Website</h1>
-    <p>Simple. Clean. GitHub Pages.</p>
-  </header>
+    <header class="topbar">
+      <div class="topbar__left">
+        <div class="badge"></div>
+        <div>
+          <div class="kicker">DIRECTORY</div>
+          <h1 class="title">Evan Bhogal</h1>
+        </div>
+      </div>
+    </header>
 
-  <main class="content">
-    <section>
-      <h2>About</h2>
-      <p>
-        This is a plain HTML and CSS site hosted on GitHub Pages.
-      </p>
-    </section>
+    <main class="layout">
+      <aside class="panel panel--list" aria-label="Project list">
+        <div class="panel__header">
+          <div class="panel__title">SELECT A PROJECT</div>
+          <div class="panel__sub">Buttons update the briefing panel.</div>
+        </div>
 
-    <section>
-      <h2>Projects</h2>
-      <ul>
-        <li>Project One</li>
-        <li>Project Two</li>
-        <li>Project Three</li>
-      </ul>
-    </section>
-  </main>
+        <div class="list" id="projectList"></div>
 
-  <footer class="site-footer">
-    <p>© 2025 Your Name</p>
-  </footer>
+        <div class="panel__footer">
+          <div class="hint">Tip: add projects in <span class="mono">script.js</span></div>
+        </div>
+      </aside>
 
+      <section class="panel panel--detail" aria-label="Project details">
+        <div class="detailHead">
+          <div>
+            <div class="kicker" id="detailType">—</div>
+            <h2 class="detailTitle" id="detailTitle">Select a project</h2>
+            <p class="detailSub" id="detailSubtitle">—</p>
+          </div>
+        </div>
+
+        <!-- THIS is what your JS writes into -->
+        <div id="detail"></div>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <div id="gallery"></div>
+      </section>
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
