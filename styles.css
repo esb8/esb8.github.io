@@ -403,3 +403,8 @@ body{
   .layout{ grid-template-columns: 1fr; }
   .detail__grid{ grid-template-columns: 1fr; }
 }
+
+.project-button img {
+  max-width: 100%;
+  height: auto;
+}
