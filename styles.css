@@ -59,10 +59,11 @@
 }
 
 .project-card {
+  flex: 1 1 250px; /* grow, shrink, base width */
+  max-width: 320px; /* optional max width */
   background-color: #444;
   padding: 12px;
   border-radius: 8px;
-  width: calc(30% - 16px); /* 3 cards per row */
   box-sizing: border-box;
   color: #fff;
 }
