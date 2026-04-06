@@ -1,141 +1,122 @@
+// Your projects array (unchanged)
 const projects = [
   {
     title: "Drone Flight Computer PCB",
     description: "Avionics for a First-Person View (FPV) racing drone.",
-    stack: ["HTML", "CSS", "JavaScript"],
-    highlights: ["Highlight 1", "Highlight 2"],
-    links: { live: "https://example.com/project1", repo: "https://github.com/user/project1" },
-    md: "projects/DroneFC.md", 
     image: "projects/images/DroneFC3D.png"
   },
-   {
+  {
     title: "Liquid Rocket Engine Control PCB",
     description: "ECM designed for high-powered liquid rocket engines.",
-    stack: ["HTML", "CSS", "JavaScript"],
-    highlights: ["Highlight 1", "Highlight 2"],
-    links: { live: "https://example.com/project1", repo: "https://github.com/user/project1" },
-    md: "projects/4in-ECM.md",
-    image: "projects/images/DroneFC3D.jpg" 
+    image: "projects/images/DroneFC3D.png"
   },
   {
     title: "Soft Robotics Controller PCB",
     description: "An R&D PCB for controlling untethered soft robots",
-    stack: ["HTML", "CSS", "JavaScript"],
-    highlights: ["Highlight 1", "Highlight 2"],
-    links: { live: "https://example.com/project1", repo: "https://github.com/user/project1" },
-    md: "projects/SoftRoboticsController.md",
-    image: "projects/images/DroneFC3D.jpg" 
+    image: "projects/images/DroneFC3D.png"
   },
   {
     title: "Voltage Controlled Oscillator",
     description: "A multi-stage op-amp based voltage controlled oscillator",
-    stack: ["HTML", "CSS", "JavaScript"],
-    highlights: ["Highlight 1", "Highlight 2"],
-    links: { live: "https://example.com/project1", repo: "https://github.com/user/project1" },
-    md: "projects/VCO.md",
-    image: "projects/images/DroneFC3D.jpg" 
-  },
-   {
-    title: "Sine-Wave Shaping Circuit",
-    description: "A Differential amplifier based sine-wave shaping circuit",
-    stack: ["HTML", "CSS", "JavaScript"],
-    highlights: ["Highlight 1", "Highlight 2"],
-    links: { live: "https://example.com/project1", repo: "https://github.com/user/project1" },
-    md: "projects/SineWaveShaping.md",
-    image: "projects/images/DroneFC3D.jpg" 
+    image: "projects/images/DroneFC3D.png"
   },
   {
-    title: "Electrical Ground Support Equipment for Liquid Rocket Engines",
+    title: "Sine-Wave Shaping Circuit",
+    description: "A Differential amplifier based sine-wave shaping circuit",
+    image: "projects/images/DroneFC3D.png"
+  },
+  {
+    title: "Electrical Ground Support Equipment",
     description: "EGSE designed for testing and controlling liquid rocket engines",
-    stack: ["HTML", "CSS", "JavaScript"],
-    highlights: ["Highlight 1", "Highlight 2"],
-    links: { live: "https://example.com/project1", repo: "https://github.com/user/project1" },
-    md: "projects/EGSE.md",
-    image: "projects/images/DroneFC3D.jpg" 
+    image: "projects/images/DroneFC3D.png"
   },
   {
     title: "MARS Model Rocket and Avionics",
     description: "End-to-end design and construction of a model rocket and its avionics system",
-    stack: ["HTML", "CSS", "JavaScript"],
-    highlights: ["Highlight 1", "Highlight 2"],
-    links: { live: "https://example.com/project1", repo: "https://github.com/user/project1" },
-    md: "projects/MARS.md",
-    image: "projects/images/DroneFC3D.jpg" 
+    image: "projects/images/DroneFC3D.png"
   },
 ];
 
-//define the list container 
-const list = document.getElementById("projectList")
+// Get the gallery container
+const gallery = document.querySelector(".gallery-container");
 
-//right side
-const detail = document.getElementById("detail");
-
-function escapeHtml(s=""){
-  return s.replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
-}
-
-function renderProject(project){
-  const text = project.details || project.description || "";
-  const paragraphs = escapeHtml(text).split(/\n\s*\n/).map(p => `<p>${p.replaceAll("\n","<br>")}</p>`).join("");
-
-  detail.innerHTML = `
-    <h2>${escapeHtml(project.title)}</h2>
-    ${paragraphs}
-
-    ${project.links?.repo ? `<p><a href="${project.links.repo}" target="_blank" rel="noopener">Repo</a></p>` : ""}
-    ${project.links?.live ? `<p><a href="${project.links.live}" target="_blank" rel="noopener">Live</a></p>` : ""}
-  `;
-}
-
-function loadMarkdown(path) {
-  fetch(path)
-    .then(r => r.text())
-    .then(md => {
-      detail.innerHTML = marked.parse(md);
-    });
-}
-
-
-
-// Iterate through projects and create elements for each project
+// Loop through each project and create a card
 projects.forEach(project => {
-  const media = document.createElement("img");
-  const button = document.createElement("button");
+  // Create container for each project
+  const card = document.createElement("div");
+  card.className = "project-card";
+  
+  // Create image
+  const img = document.createElement("img");
+  img.src = project.image;
+  img.alt = project.title;
+  
+  // Create title
   const title = document.createElement("h3");
-  const subtitle = document.createElement("p");
-  
-
-  button.className = "project-button";
-  media.src = project.image; // Placeholder image
   title.textContent = project.title;
-  subtitle.textContent = project.description;
   
-  button.appendChild(media);
-  button.appendChild(title);
-  button.appendChild(subtitle);
-
-  list.appendChild(button);
-  button.addEventListener("click", () => {
-  loadMarkdown(project.md);  
+  // Optional: create description
+  const desc = document.createElement("p");
+  desc.textContent = project.description;
+  
+  // Append image, title, description to card
+  card.appendChild(img);
+  card.appendChild(title);
+  card.appendChild(desc);
+  
+  // Append card to gallery container
+  gallery.appendChild(card);
 });
 
-})
 
 
 
+// Featured images folder
+const featuredImages = [
+  "projects/images/DroneFC3D.png",
+  "projects/images/DroneFC3D.png",
+  "projects/images/DroneFC3D.png",
+  "projects/images/DroneFC3D.png",
+  "projects/images/DroneFC3D.png"
+];
+
+const featuredGallery = document.querySelector(".featured-gallery");
+
+// Populate gallery
+featuredImages.forEach((src, index) => {
+  const card = document.createElement("div");
+  card.className = "project-card";
+  const img = document.createElement("img");
+  img.src = src;
+  img.alt = `Featured ${index + 1}`;
+  card.appendChild(img);
+  featuredGallery.appendChild(card);
+});
+
+// Duplicate the gallery items to create infinite scroll illusion
+featuredImages.forEach((src, index) => {
+  const clone = document.createElement("div");
+  clone.className = "project-card";
+  const img = document.createElement("img");
+  img.src = src;
+  img.alt = `Featured clone ${index + 1}`;
+  clone.appendChild(img);
+  featuredGallery.appendChild(clone);
+});
+
+// Auto-scroll variables
+let scrollX = 0;
+const scrollSpeed = 0.1; // pixels per frame
+const totalWidth = featuredGallery.scrollWidth / 2; // width of original set
+
+function autoScroll() {
+  scrollX += scrollSpeed;
+  if (scrollX >= totalWidth) scrollX = 0; // loop back
+  featuredGallery.style.transform = `translateX(-${scrollX}px)`;
+  requestAnimationFrame(autoScroll);
+}
+
+// Start auto-scroll
+requestAnimationFrame(autoScroll);
 
 
-
-  
-
-
-
-
-/*
-document.getElementById()
-document.querySelector()
-document.createElement()
-element.textContent
-element.className
-element.appendChild()
-*/
