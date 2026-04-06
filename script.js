@@ -67,17 +67,18 @@ const allTags = [...new Set(projects.flatMap(p => p.tags))];
 
 allTags.forEach(tag => {
   const btn = document.createElement("button");
-  btn.className = "tag-btn";      // sidebar class
+  btn.className = "tag-btn";
+  btn.type = "button";          // important: prevents default submit behavior
   btn.textContent = tag;
-  btn.type = "button";
 
   btn.addEventListener("click", (event) => {
-    event.preventDefault();
+    event.preventDefault();     // stop default jump/submit
     toggleTag(tag, btn);
   });
 
   tagList.appendChild(btn);
 });
+
 
 // =======================
 // Tag selection handler
@@ -106,9 +107,9 @@ function renderSelectedTags() {
   statusText.className = "selected-tags-status";
 
   if (selectedTags.length === 0) {
-    statusText.textContent = "Displaying all projects";
+    statusText.textContent = "Tags Selected: ALL";
   } else {
-    statusText.textContent = "Displaying projects with tags: ";
+    statusText.textContent = "Tags Selected: ";
   }
   selectedTagsBar.appendChild(statusText);
 
@@ -116,14 +117,15 @@ function renderSelectedTags() {
   const pillsContainer = document.createElement("span");
   pillsContainer.className = "selected-tags-pills";
 
+  // Selected tags pills
   selectedTags.forEach(tag => {
     const tagEl = document.createElement("button"); 
     tagEl.className = "selected-tag-pill";  
-    tagEl.type = "button";
+    tagEl.type = "button";        // prevents default
     tagEl.textContent = tag;
 
     tagEl.addEventListener("click", (event) => {
-      event.preventDefault();
+      event.preventDefault();     // stop jump
       selectedTags = selectedTags.filter(t => t !== tag);
 
       // Remove highlight from sidebar button
@@ -178,7 +180,21 @@ function renderGallery() {
 // =======================
 renderGallery();
 
+document.querySelectorAll(".page-btn").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const page = btn.dataset.page;
 
+    if (page === "PORTFOLIO") {
+      // Current page: do nothing
+      return;
+    }
+
+    if (page === "RESUME") {
+      window.location.href = "resume.html"; // redirect to subpage
+    }
+  });
+});
 
 
 
@@ -231,3 +247,35 @@ function autoScroll() {
 requestAnimationFrame(autoScroll);
 
 
+function renderGallery() {
+  gallery.innerHTML = "";
+  const filteredProjects = selectedTags.length === 0 
+    ? projects 
+    : projects.filter(p => p.tags.some(t => selectedTags.includes(t)));
+
+  filteredProjects.forEach(project => {
+    const cardLink = document.createElement("a");
+    cardLink.href = `project.html?id=${encodeURIComponent(project.title)}`;
+    cardLink.className = "project-card-link"; // for hover styling
+
+    const card = document.createElement("div");
+    card.className = "project-card";
+
+    const img = document.createElement("img");
+    img.src = project.image;
+    img.alt = project.title;
+
+    const title = document.createElement("h3");
+    title.textContent = project.title;
+
+    const desc = document.createElement("p");
+    desc.textContent = project.description;
+
+    card.appendChild(img);
+    card.appendChild(title);
+    card.appendChild(desc);
+
+    cardLink.appendChild(card);
+    gallery.appendChild(cardLink);
+  });
+}

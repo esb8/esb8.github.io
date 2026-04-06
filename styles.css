@@ -56,27 +56,30 @@
   display: flex;
   flex-wrap: wrap; /* allows multiple images per row */
   gap: 12px;
+  min-height: 500px;
 }
 
 .project-card {
   flex: 1 1 250px; /* grow, shrink, base width */
-  max-width: 320px; /* optional max width */
+  max-width: 300px; /* optional max width */
   background-color: #444;
   padding: 12px;
   border-radius: 8px;
   box-sizing: border-box;
   color: #fff;
+  height:280px;   
+
 }
 
 .project-card img {
   width: 100%;
-  height: 150px;
+  height: 160px;
   object-fit: cover;
   border-radius: 6px;
 }
 
 .project-card h3 {
-  margin: 8px 0 4px;
+  margin: 5px 0 4px;
   font-size: 1.1rem;
 }
 
@@ -277,7 +280,7 @@ body {
 
 /* Status text */
 .selected-tags-status {
-  font-weight: normal;
+  font-weight: bold;
   color: #fff;
   margin-top: 0;    /* removes top margin */
   margin-right: 6px;
@@ -319,9 +322,95 @@ body, h1, h3, h6, h4, p, .selected-tags-status {
   font-family: "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
 }
 
+
+
 /* Faint horizontal divider for sections */
 .section-divider {
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* faint white line */
   margin: 8px 0; /* spacing above and below */
+}
+.project-card-link {
+  display: block;        /* just wrap the card */
+  text-decoration: none; /* remove underline */
+  color: inherit;        /* inherit text color */
+}
+
+.project-card-link .project-card {
+  width: 100%;           /* card fills the link completely */
+  margin: 0;             /* remove extra margin */
+  padding: 12px;         /* keep your existing padding */
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+
+/* Image inside card */
+.project-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 6px;
+  transition: transform 0.3s ease;
+}
+
+/* Project title */
+.project-card h3 {
+  margin: 8px 0 4px;
+  font-size: 1.1rem;
+  transition: text-shadow 0.3s ease;
+}
+
+/* Card layout */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: visible;             
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.6s ease-out;
+}
+
+/* Image */
+.project-card img {
+  width: auto;                   
+  max-width: 100%;               
+  height: 170px;                 
+  object-fit: cover;
+  border-radius: 6px;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), height 0.6s ease-out;
+}
+
+/* Title */
+.project-card h3 {
+  margin: 8px 0 4px;
+  font-size: 1.1rem;
+  text-align: center;
+  transition: text-shadow 0.6s ease-out, margin-top 0.6s ease-out;
+}
+
+/* Description */
+.project-card p {
+  font-size: 0.9rem;
+  color: #ddd;
+  transition: opacity 0.3s ease, margin-top 0.3s ease;
+  text-align: center;
+}
+/*
+  /* Hover effects: smoother growth */
+  .project-card-link:hover .project-card {
+          /* slightly larger */
+    /*transform: scale(1.05);*/
+    z-index: 10;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
+    transition: transform 3.5s ease-in-out, box-shadow 1.0s ease-in-out;
+  }
+  /* Hover: hide description immediately 
+  .project-card-link:hover .project-card p {
+    opacity: 0;
+    margin-top: 0;
+  }
+*/
+/* Hover: push title down and glow */
+.project-card-link:hover .project-card h3 {
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.35);
 }
