@@ -4,43 +4,43 @@ const projects = [
     title: "Drone Flight Computer PCB",
     description: "Avionics for a First-Person View (FPV) racing drone.",
     image: "projects/images/DroneFC3D.png",
-    tags: ["Drone", "FPV", "PCB"]
+    tags: ["PCB", "RF", "Mechanical"]
   },
   {
     title: "Liquid Rocket Engine Control PCB",
     description: "ECM designed for high-powered liquid rocket engines.",
     image: "projects/images/DroneFC3D.png",
-    tags: ["Rocket", "PCB"]
+    tags: ["Rocketry", "PCB"]
   },
   {
     title: "Soft Robotics Controller PCB",
     description: "An R&D PCB for controlling untethered soft robots",
     image: "projects/images/DroneFC3D.png",
-    tags: ["Robotics", "PCB"]
+    tags: ["PCB", "Mechanical"]
   },
   {
     title: "Voltage Controlled Oscillator",
     description: "A multi-stage op-amp based voltage controlled oscillator",
     image: "projects/images/DroneFC3D.png",
-    tags: ["Analog", "Oscillator"]
+    tags: ["Analog"]
   },
   {
     title: "Sine-Wave Shaping Circuit",
     description: "A Differential amplifier based sine-wave shaping circuit",
     image: "projects/images/DroneFC3D.png",
-    tags: ["Analog", "Circuit"]
+    tags: ["Analog"]
   },
   {
     title: "Electrical Ground Support Equipment",
     description: "EGSE designed for testing and controlling liquid rocket engines",
     image: "projects/images/DroneFC3D.png",
-    tags: ["Rocket", "PCB"]
+    tags: ["Rocketry", "PCB", "PLC", "Mechanical"]
   },
   {
     title: "MARS Model Rocket and Avionics",
     description: "End-to-end design and construction of a model rocket and its avionics system",
     image: "projects/images/DroneFC3D.png",
-    tags: ["Rocket", "Avionics"]
+    tags: ["Rocketry", "PCB", "Mechanical"]
   },
 ];
 
@@ -154,12 +154,22 @@ function renderGallery() {
     : projects.filter(p => p.tags.some(t => selectedTags.includes(t)));
 
   filteredProjects.forEach(project => {
+    const cardLink = document.createElement("a");
+    cardLink.href = `project.html?id=${encodeURIComponent(project.title)}`;
+    cardLink.className = "project-card-link";
+
     const card = document.createElement("div");
     card.className = "project-card";
+
+    // ✅ NEW: image wrapper
+    const imgWrapper = document.createElement("div");
+    imgWrapper.className = "card-image-wrapper";
 
     const img = document.createElement("img");
     img.src = project.image;
     img.alt = project.title;
+
+    imgWrapper.appendChild(img);   // wrap image
 
     const title = document.createElement("h3");
     title.textContent = project.title;
@@ -167,11 +177,13 @@ function renderGallery() {
     const desc = document.createElement("p");
     desc.textContent = project.description;
 
-    card.appendChild(img);
+    // ✅ order matters
+    card.appendChild(imgWrapper);
     card.appendChild(title);
     card.appendChild(desc);
 
-    gallery.appendChild(card);
+    cardLink.appendChild(card);
+    gallery.appendChild(cardLink);
   });
 }
 
@@ -179,23 +191,22 @@ function renderGallery() {
 // Initial gallery render
 // =======================
 renderGallery();
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".page-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const page = btn.dataset.page;
 
-document.querySelectorAll(".page-btn").forEach(btn => {
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    const page = btn.dataset.page;
+      if (page === "PORTFOLIO") {
+        window.location.href = "index.html";
+      }
 
-    if (page === "PORTFOLIO") {
-      // Current page: do nothing
-      return;
-    }
-
-    if (page === "RESUME") {
-      window.location.href = "resume.html"; // redirect to subpage
-    }
+      if (page === "RESUME") {
+        window.location.href = "resume.html";
+      }
+    });
   });
 });
-
 
 
 // Featured images folder

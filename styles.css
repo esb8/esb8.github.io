@@ -401,8 +401,8 @@ body, h1, h3, h6, h4, p, .selected-tags-status {
           /* slightly larger */
     /*transform: scale(1.05);*/
     z-index: 10;
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
-    transition: transform 3.5s ease-in-out, box-shadow 1.0s ease-in-out;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.55);
+    transition: transform 3.5s ease-in-out, box-shadow 0.5s ease-in-out;
   }
   /* Hover: hide description immediately 
   .project-card-link:hover .project-card p {
@@ -413,4 +413,131 @@ body, h1, h3, h6, h4, p, .selected-tags-status {
 /* Hover: push title down and glow */
 .project-card-link:hover .project-card h3 {
   text-shadow: 0 0 14px rgba(255, 255, 255, 0.35);
+}
+
+/* Only animate the image wrapper */
+.card-image-wrapper {
+  overflow: hidden;
+  transition: transform 1s ease-out;
+}
+
+/* Smooth image scaling */
+.card-image-wrapper img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 6px;
+  transition: transform 1s ease-out;
+}
+
+/* Hover effect */
+.project-card-link:hover .card-image-wrapper img {
+  transform: scale(1.5);  /* grows smoothly */
+}
+
+/* Card glow ONLY (no scaling = no blur) */
+.project-card-link:hover .project-card {
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+
+/* Title glow */
+.project-card-link:hover h3 {
+  text-shadow: 0 0 6px rgba(255,255,255,0.6);
+}
+
+
+.project-content {
+  max-width: 70%;
+  line-height: 1.6;
+  font-family: inherit;
+  color: inherit;
+}
+
+/* Headings */
+.project-content h1,
+.project-content h2,
+.project-content h3, 
+.project-content h4,
+.project-content h5,
+.project-content h6
+.project-content p,
+.project-content ul,
+.project-content li,
+.project-content title
+{
+  color: #fff;
+}
+.project-content h1,
+.project-content h2,
+.project-content h3 {
+  color: #fff;
+  margin-top: 1.5rem;
+  margin-left: 50px;
+  text-decoration: underline; 
+}
+
+/* Paragraphs */
+.project-content p {
+  margin: 0.5rem 0;
+  color: #fff;
+  margin-left: 75px;
+}
+
+/* Lists */
+.project-content ul {
+  padding-left: 1.5rem;
+  margin-left: 50px;
+
+}
+
+.project-content li {
+  margin: 0.4rem 0;
+  margin-left: 50px;
+
+}
+
+.project-content {
+  outline: 2px solid purple;
+}
+
+
+/* Code blocks */
+.project-content pre {
+  background: #1e1e1e;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.project-content code {
+  background: #2a2a2a;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Links */
+.project-content a {
+  color: #4ea1ff;
+  text-decoration: none;
+}
+
+.project-content a:hover {
+  text-decoration: underline;
+}
+
+/* Container for images */
+#project-media {
+  display: flex;
+  flex-wrap: wrap;        /* wrap images to new line if needed */
+  gap: 1rem;              /* spacing between images */
+  align-items: flex-start; /* prevent stretching */
+}
+
+/* Images inside container */
+#project-media .project-img {
+  max-width: 100%;   /* image will scale down but never exceed container width */
+  height: auto;      /* preserves aspect ratio */
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  display: block;    /* remove inline spacing issues */
 }

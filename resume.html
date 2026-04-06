@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="app">
+
+    <div class="header">
+      <div class="top-bar">
+        <h1>Hello there, I'm Evan!</h1>
+        <h6>🎓 Electrical Engineering | ⚡ Mixed-Signal & Analog Design Enthusiast | ✈️ Drones & Avionics</h6>
+        <p>
+          I'm passionate about hardware, embedded systems, robotics, and RF/Analog design.
+          Currently exploring transistor-level analog circuits and radio design.
+        </p>
+      </div>
+
+      <div class="page-selector">
+        <button class="page-btn" data-page="PORTFOLIO">PORTFOLIO</button>
+        <button class="page-btn active" data-page="RESUME">RESUME</button>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-row">
+      <iframe 
+        src="projects/resume.pdf" 
+        style="width:100%; height:100vh; border:none;">
+      </iframe>
+    </div>
+
+  </div>
+
+  <!-- ✅ Load script LAST -->
+  <script src="resume.js"></script>
+</body>
+</html>
