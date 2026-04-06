@@ -237,7 +237,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 10px;
+  margin-top: 0;    /* removes top margin */
 }
 
 .tag-btn {
@@ -261,10 +261,66 @@ body {
 }
 
 /* Selected tags bar styling */
+
+/* Selected tags container */
 .selected-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 10px;
-  min-height: 30px; /* reserve space */
+  gap:8px;
+  margin-bottom: 12px;
+  align-items: center;
+  font-family: monospace;
+  font-size: 0.95rem;
+  color: #eee;
+}
+
+/* Status text */
+.selected-tags-status {
+  font-weight: normal;
+  color: #fff;
+  margin-top: 0;    /* removes top margin */
+  margin-right: 6px;
+}
+
+/* Pills inside status */
+.selected-tag-pill {
+  background-color: #888;
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  padding: 2px 8px;
+  gap: 5px;
+  font-family: monospace;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.selected-tags-pills {
+  display: inline-flex;
+  gap: 6px; /* add proper gap between each pill */
+  flex-wrap: wrap; /* wrap to new line if too many pills */
+  margin-left: 4px; /* small gap after the status text */
+}
+
+.selected-tag-pill:hover {
+  background-color: #bbb;
+  color: #222;
+}
+
+.page-btn,
+.tag-btn,
+.selected-tag-pill {
+  font-family: 'Courier New', monospace;
+}
+
+body, h1, h3, h6, h4, p, .selected-tags-status {
+  font-family: "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
+}
+
+/* Faint horizontal divider for sections */
+.section-divider {
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* faint white line */
+  margin: 8px 0; /* spacing above and below */
 }
