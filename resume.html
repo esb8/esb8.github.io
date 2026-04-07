@@ -11,15 +11,29 @@
   <div class="app">
 
     <div class="header">
+      
       <div class="top-bar">
-        <h1>Hello there, I'm Evan!</h1>
-        <h6>🎓 Electrical Engineering | ⚡ Mixed-Signal & Analog Design Enthusiast | ✈️ Drones & Avionics</h6>
-        <p>
-          I'm passionate about hardware, embedded systems, robotics, and RF/Analog design.
-          Currently exploring transistor-level analog circuits and radio design.
-        </p>
-      </div>
+        <div class="top-bar-left">
+          <h1>Hello there, I'm Evan!</h1>
+          <p>
+            I'm passionate about hardware, embedded systems, robotics, and RF/Analog design.
+            Currently exploring transistor-level analog circuits and radio design.
+          </p>
+        </div>
 
+        <div class="top-bar-right">
+          <a href="https://github.com/yourusername" target="_blank">
+            <img src="icons/github.svg" alt="GitHub">
+          </a>
+          <a href="https://linkedin.com/in/yourprofile" target="_blank">
+            <img src="icons/linkedin.svg" alt="LinkedIn">
+          </a>
+          <a href="mailto:youremail@gmail.com">
+            <img src="icons/email.svg" alt="Email">
+          </a>
+        </div>
+      </div>
+      <div class="section-divider"></div>
       <div class="page-selector">
         <button class="page-btn" data-page="PORTFOLIO">PORTFOLIO</button>
         <button class="page-btn active" data-page="RESUME">RESUME</button>
@@ -38,6 +52,6 @@
   </div>
 
   <!-- ✅ Load script LAST -->
-  <script src="resume.js"></script>
+  <script type="module" src="resume.js"></script>
 </body>
 </html>

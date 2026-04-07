@@ -20,3 +20,4 @@ The airframe is designed to be **robust and lightweight** with:
 - **Integrated landing legs** and **structural reinforcements** for durability  
 - Geometry to suit **~935 KV** brushless motors (modeled in CAD)  
 - CAD provided for printing and customization
+

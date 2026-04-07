@@ -1,48 +1,5 @@
 // Your projects array (unchanged)
-const projects = [
-  {
-    title: "Drone Flight Computer PCB",
-    description: "Avionics for a First-Person View (FPV) racing drone.",
-    image: "projects/images/DroneFC3D.png",
-    tags: ["PCB", "RF", "Mechanical"]
-  },
-  {
-    title: "Liquid Rocket Engine Control PCB",
-    description: "ECM designed for high-powered liquid rocket engines.",
-    image: "projects/images/DroneFC3D.png",
-    tags: ["Rocketry", "PCB"]
-  },
-  {
-    title: "Soft Robotics Controller PCB",
-    description: "An R&D PCB for controlling untethered soft robots",
-    image: "projects/images/DroneFC3D.png",
-    tags: ["PCB", "Mechanical"]
-  },
-  {
-    title: "Voltage Controlled Oscillator",
-    description: "A multi-stage op-amp based voltage controlled oscillator",
-    image: "projects/images/DroneFC3D.png",
-    tags: ["Analog"]
-  },
-  {
-    title: "Sine-Wave Shaping Circuit",
-    description: "A Differential amplifier based sine-wave shaping circuit",
-    image: "projects/images/DroneFC3D.png",
-    tags: ["Analog"]
-  },
-  {
-    title: "Electrical Ground Support Equipment",
-    description: "EGSE designed for testing and controlling liquid rocket engines",
-    image: "projects/images/DroneFC3D.png",
-    tags: ["Rocketry", "PCB", "PLC", "Mechanical"]
-  },
-  {
-    title: "MARS Model Rocket and Avionics",
-    description: "End-to-end design and construction of a model rocket and its avionics system",
-    image: "projects/images/DroneFC3D.png",
-    tags: ["Rocketry", "PCB", "Mechanical"]
-  },
-];
+import { projects } from './project-data.js';
 
 // =======================
 // DOM References
@@ -256,37 +213,4 @@ function autoScroll() {
 
 // Start auto-scroll
 requestAnimationFrame(autoScroll);
-
-
-function renderGallery() {
-  gallery.innerHTML = "";
-  const filteredProjects = selectedTags.length === 0 
-    ? projects 
-    : projects.filter(p => p.tags.some(t => selectedTags.includes(t)));
-
-  filteredProjects.forEach(project => {
-    const cardLink = document.createElement("a");
-    cardLink.href = `project.html?id=${encodeURIComponent(project.title)}`;
-    cardLink.className = "project-card-link"; // for hover styling
-
-    const card = document.createElement("div");
-    card.className = "project-card";
-
-    const img = document.createElement("img");
-    img.src = project.image;
-    img.alt = project.title;
-
-    const title = document.createElement("h3");
-    title.textContent = project.title;
-
-    const desc = document.createElement("p");
-    desc.textContent = project.description;
-
-    card.appendChild(img);
-    card.appendChild(title);
-    card.appendChild(desc);
-
-    cardLink.appendChild(card);
-    gallery.appendChild(cardLink);
-  });
-}
+  
