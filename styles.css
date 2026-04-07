@@ -191,6 +191,9 @@ body {
 .top-bar-left {
   max-width: 600px;
 }
+.top-bar-right img[alt="LinkedIn"] {
+  filter: invert(1);
+}
 
 /* Right side (icons) */
 .top-bar-right {
@@ -203,7 +206,6 @@ body {
 .top-bar-right img {
   width: 28px;
   height: 28px;
-  filter: invert(1); /* makes dark icons white */
   transition: transform 0.2s ease, opacity 0.2s ease;
   cursor: pointer;
 }
@@ -554,18 +556,26 @@ body, h1, h3, h6, h4, p, .selected-tags-status {
   flex-direction: row;
   gap: 1rem;              /* spacing between images */
   align-items: flex-start; /* prevent stretching */
-  flex: 1; /* take remaining space */
 }
 
 /* Images inside container */
 #project-media .project-img {
-  max-width: 100%;   /* image will scale down but never exceed container width */
-  height: auto;      /* preserves aspect ratio */
+  max-width: 300px;    /* image will never exceed 500px wide */
+  max-height: 500px;   /* image will never exceed 500px tall */
+  width: auto;         /* keeps natural width if smaller than max */
+  height: auto;        /* keeps natural height if smaller than max */
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  display: block;    /* remove inline spacing issues */
+  display: block;
 }
 
+.project-media {
+  border: 2px solid red;
+}
+
+.project-tags {
+  border: 2px solid blue;
+}
 
 .gallery-container {
   background-color: #222;
@@ -601,16 +611,19 @@ body, h1, h3, h6, h4, p, .selected-tags-status {
 }
 
 .gallery-projects .gallery-link {
-  flex: 1 1 calc(33.333% - 1rem); /* max 3 per row */
+  flex: 1 1 calc(50% - 1rem); /* take ~50% width minus gap */
   display: block;
 }
 
 .gallery-projects .gallery-img {
-  width: 100%;
-  height: auto;
+  flex: 1 1 calc(50% - 1rem);
+  width: 100%;           /* fill the flex item */
+  max-width: 500px;      /* do not exceed this width */
+  max-height: 500px;     /* optional: cap height too */
+  height: auto;          /* maintain aspect ratio */
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease;
+  display: block;
 }
 
 /* Hover effect */
@@ -645,7 +658,24 @@ body, h1, h3, h6, h4, p, .selected-tags-status {
   margin-bottom: 2rem;
   text-decoration: underline;
   padding-left: 50px;
-  color: #ddd;
+  color: #fff;
   font-size: medium;
 
+}
+
+.project-right-sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+#project-tags { 
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;   /* 🔥 THIS controls spacing */
+}
+
+#project-right-sidebar h3 {
+  font-size: 1.25rem;
+  margin-bottom: 6px;
+  color: #fff;
 }

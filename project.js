@@ -18,7 +18,7 @@ if (project && project.projectContent) {
       document.getElementById("project-content").innerHTML = marked.parse(md);
 
       // =======================
-      // Main Image (uses existing `image`)
+      // Main Image
       // =======================
       const mediaDiv = document.getElementById("project-media");
       mediaDiv.innerHTML = "";
@@ -29,6 +29,29 @@ if (project && project.projectContent) {
         img.alt = project.title;
         img.classList.add("project-img");
         mediaDiv.appendChild(img);
+      }
+
+      // =======================
+      // ✅ TAGS (NEW)
+      // =======================
+      const tagsDiv = document.getElementById("project-tags");
+      tagsDiv.innerHTML = "";
+
+      if (project.tags && project.tags.length > 0) {
+        project.tags.forEach(tag => {
+          const btn = document.createElement("button");
+          btn.className = "tag-btn";   // reuse your existing styling
+          btn.type = "button";
+          btn.textContent = tag;
+
+          // OPTIONAL: make clickable later if you want filtering navigation
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.location.href = `index.html?tag=${encodeURIComponent(tag)}`;
+          });
+
+          tagsDiv.appendChild(btn);
+        });
       }
 
       // =======================
@@ -66,7 +89,7 @@ if (project && project.projectContent) {
 
 
 // =======================
-// Page navigation (unchanged)
+// Page navigation
 // =======================
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".page-btn").forEach(btn => {
