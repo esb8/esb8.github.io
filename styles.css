@@ -679,3 +679,29 @@ body, h1, h3, h6, h4, p, .selected-tags-status {
   margin-bottom: 6px;
   color: #fff;
 }
+
+.project-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  background-color: #555;
+  color: #fff;
+  border-color: #444
+}
+
+.project-link-btn:hover {
+  background-color: #555;
+  transform: translateY(-2px);
+  opacity: 0.8;
+  border-color: #444
+}
+
+.project-link-btn svg {
+  display: block;
+}

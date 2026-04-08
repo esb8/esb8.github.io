@@ -1,24 +1,41 @@
+## Open Source FPV Drone
 
-# FPV Drone PCB Full PCB + Code + Assembly
-
-**A comprehensive, fully open-source FPV drone platform**: a two-board avionics stack (flight computer + power/ESC) complete with their codebase *and* a lightweight, robust airframe. All KiCad 9.0 design files, firmware, and CAD are included. Media of all PCBs, schematics and airframe are attached within this repository. 
-
-## Overview
-
-This project develops an FPV drone around two custom 5×5 PCBs: a **STM32F411 flight computer** and a **STM32F405 power distribution + ESC board**. esigned for compatibility with **Betaflight** (FC) and **AM32** (ESC). Both are built around the STM32 chipset and designed to be compatible with BetaFlight and AM32 requirements.
-
-**Manufacturing Sponsor:** Huge thanks to **[PCBWay](https://www.pcbway.com/)** for sponsoring fabrication and assembly of the MKII flight computer. Their high-quality manufacturing, quick turnaround, significantly accelerated the build process. Moreover, their service was excellent and addressed questions promptly and clearly. As a bonus, PCBWay offers affordable, unique **silkscreen colours**. PCBWay is highly recommended and proved to be a great fit for the FPV-Drone-STM32F411 project.
+### Overview  
+This project develops a fully custom FPV drone platform built around two in-house PCBs: a flight computer and a power/ESC board. The system integrates embedded firmware, RF communication, and a lightweight airframe into a modular, open-source design focused on performance, efficiency, and debuggability.
 
 
-**What’s new (MKII & Airframe)**
-- **MKII Flight Computer:** UART and SWD flash options, cost-efficient and compact IMU (ICM-42605), oscilloscope-friendly SPI test pads, expanded test points, JST connectors, improved routing for debugability.
-- **Open-Source Airframe:** integrated landing legs, structural reinforcements, and geometry to accommodate **~935 KV BLDC motors**; CAD provided for easy printing/mods.
 
-## Airframe
+### Key Contributions  
+- Designed **two custom PCBs** (STM32F411 flight controller + STM32F405 ESC/power board) in KiCad  
+- Developed bare-metal embedded firmware in **C**, compatible with Betaflight and AM32  
+- Integrated **IMU, GPS, and 915 MHz LoRa**, achieving **5+ km RF range**  
+- Designed **3-phase BLDC motor control** with **95%+ efficient DC/DC power conversion**  
+- Validated hardware using **oscilloscope, logic analyzer, and multimeter** across multiple revisions  
+    
 
-The airframe is designed to be **robust and lightweight** with:
-- **Integrated landing legs** and **structural reinforcements** for durability  
-- Geometry to suit **~935 KV** brushless motors (modeled in CAD)  
-- CAD provided for printing and customization
+
+### System Design  
+
+**Avionics**  
+Custom STM32-based flight computer with IMU integration and impedance-controlled layout. Designed with SWD access, SPI test points, and expanded debugging features to improve bring-up and validation.
+
+**Power & ESC**  
+Dedicated STM32F405 board handling power distribution and motor control. Includes high-efficiency DC/DC converters and a 3-phase ESC architecture optimized for reliability and thermal performance.
+
+**RF & Communication**  
+915 MHz LoRa link validated through real-world testing, achieving **stable communication beyond 5 km**.
+
+**Airframe**  
+Lightweight, reinforced frame with integrated landing legs and geometry tailored for ~935 KV brushless motors. Designed for durability and easy modification with fully available CAD.
+
+
+
+### Results  
+- PCBWay Manufacturing sponsorship providing fabrication and assembly support.
+- Achieved **long-range RF communication (5+ km)**.  
+- Verified signal integrity and bus reliability through test points with an oscilloscope.  
+- Delivered stable power system with **>95% efficiency**.  
+- Iterated across 2 PCB Flight Controller revisions to improve layout and debugging access.  
+
 
 

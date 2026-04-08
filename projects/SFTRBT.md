@@ -1,68 +1,36 @@
-# Soft Robotics PCB 
+## Soft Robotics Control PCB
 
-This project features a soft-robotics controller built around an ESP32 with an onboard camera, driver stages for multiple electromagnets, photoresistor sensing, SPI breakouts, and a UART header for easy flashing all developed for **bio-inspired robotics** at [ELXIR LAB](https://www.torontomu.ca/elixir-lab/). 
-
-
-## Features
-- **ESP32** (WROOM or WROVER) with **camera module** (OV2640 or similar)
-- **4–8 electromagnet channels** with protected low-side MOSFET drivers (PWM capable)
-- **Photoresistor (LDR) inputs** with RC dividers → ADC
-- **SPI header** (3.3V) for add-ons (external ADCs, sensors, or LED drivers)
-- **Dedicated UART header** for flashing (RTS/DTR optional) + **USB-C** or JST-PH power
-- **Reverse-polarity & transient protection**, per-channel flyback/snubbers
-- **Buck Regulation for 2S LiPos**
-- **Mounting + cable-reliefs** sized for soft-robotics rigs
-- **Full Codebase** containing all peripheral test code
+### Overview  
+Designed a custom soft-robotics control PCB for bio-inspired systems, integrating sensing, actuation, and onboard vision. The platform combines mixed-signal data acquisition with high-current driver stages and embedded firmware to enable real-time control, perception, and wireless communication.
 
 
-# Documentation
 
-### Setup Guidelines
-1. Open ArduinoIDE
-2. Set Baud Rate: 115200
-3. Set COM to whatever appears on device manager
-4. Set board to ESP32S3-Dev Board.
-5. The serial monitor must read at 115200 Baud.
-### Boot Guide
-1. Enter Bootloader
-2. Ensure IO46 is pulled down.
-3. Pull boot low (Switch ON), Pull Enable Up and Down to reset the ESP32 (Switch On -> Switch Off). During this time firmware can be uploaded.
-4. Boot from uploaded code
-4. Pull boot high (Switch OFF), Pull Enable Up and Down to reset the ESP32 (Switch On -> Switch Off).
+### Key Contributions  
+- Designed ESP32-based PCB with **camera, sensors, and multi-channel actuator control**  
+- Implemented **4–8 electromagnet driver channels** with protected low-side MOSFET stages (PWM capable)  
+- Developed firmware in **C++** for SPI, I²C, ADC, PWM, and real-time control  
+- Integrated **onboard vision (OV2640)** for object detection and depth tracking  
+- Designed power system with **buck regulation for 2S LiPo** and protection (flyback, reverse polarity)  
+- Applied **IPC-2152 standards** to support **5A+ current handling**  
+- Improved manufacturability by resolving **460+ DRC issues**, reducing lead time from 2 months to <2 weeks  
 
 
-## Pinout
-- CAMERA: PINS 4 to 14, 21.
-- CAM_SDA: IO20
-- CAM_SCL: IO3
-- S_PWM: IO1, ADC1_CH0
-- SDA: IO42
-- SCL: IO41
-- XSHUT: IO40
-- nFault_A: I039
-- nFault_B: IO4
-- I_SENSE_A: IO14, ADC_CH3
-- I_SENSE_B: IO2, ADC1_CH0
-- IN1_A: IO38
-- IN2_A: IO48
-- IN1_B: IO47
-- IN2_B: IO21
-- LDR1: IO19
-- LDR2: IO5
-  
-## Calculations
+### System Design  
 
-### Trip Current (typ.)
-I_TRIP = V_REF / (R_IPROPI × A_IPROPI)  
-       = 3.3 / (2350 × 455 × 10^-6)  
-       ≈ 3.09 A
+**Embedded & Vision System**  
+ESP32 (WROOM/WROVER) with onboard camera enabling wireless control and AI-based perception tasks, including object detection and tracking.
 
-### IPROPI Current at Trip
-I_IPROPI = I_TRIP × A_IPROPI  
-         = V_REF / R_IPROPI  
-         = 3.3 / 2350  
-         ≈ 1.40 mA
+**Actuation & Power**  
+Multi-channel electromagnet drivers with low-side MOSFET topology, designed for inductive loads with flyback protection. Power delivery optimized for high-current operation using IPC-2152-guided copper sizing.
 
-### IPROPI Voltage at Trip
-V_IPROPI = I_IPROPI × R_IPROPI  
-         = 3.3 V
+**Sensing & Instrumentation**  
+Photoresistor-based sensing (LDR + ADC) with analog conditioning, along with SPI expansion for additional sensors and peripherals.
+
+**Connectivity & Debugging**  
+Integrated UART header for flashing/debugging, SPI breakout for expansion, and Wi-Fi/Bluetooth for wireless control.
+
+
+### Results  
+- Enabled **real-time sensing, actuation, and vision processing** on a single highly compact platform  
+- Achieved consistent operation under **mixed-signal and inductive load conditions**.
+- Reduced PCB turnaround time by **>4× through DFM optimization**  
