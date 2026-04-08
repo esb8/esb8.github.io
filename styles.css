@@ -16,6 +16,12 @@ h1, h3, h4, h6, p, .selected-tags-status {
   font-family: inherit;
 }
 
+h4 {
+  color: #ccc;
+  font-family: inherit;
+
+}
+
 /* ============================
    App Layout
 ============================ */
@@ -81,9 +87,23 @@ h1, h3, h4, h6, p, .selected-tags-status {
 .top-bar-right {
   display: flex;
   gap: 15px;
-  align-items: center;
+  flex-direction: column;
 }
 
+.social-text {
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  color: #ccc;
+  opacity: 0.75; /* 0 = invisible, 1 = fully opaque */
+  letter-spacing: 3px;
+  font-size: large;
+}
+
+.social-icons {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
 .top-bar-right img {
   width: 28px;
   height: 28px;
@@ -103,19 +123,32 @@ h1, h3, h4, h6, p, .selected-tags-status {
 .top-bar h1 {
   font-size: 2rem;
   margin-bottom: 10px;
+  color: #4ea1ff;
+  letter-spacing: 2px;
+  font-family: 'Courier New', monospace;
+  gap: 15px;
+
 }
 
 .top-bar h6 {
   font-size: 1rem;
   font-weight: 400;
   margin-bottom: 10px;
+  color: #ccc;
 }
 
 .top-bar p {
   font-size: 0.95rem;
   max-width: 600px;
+  color: #ccc;
 }
 
+
+.social-icons {
+  display: flex;          /* keep icons in a row */
+  flex-direction: row;
+  gap: 15px;              /* spacing between icons */
+}
 /* ============================
    Page Selector Buttons
 ============================ */
@@ -146,9 +179,10 @@ h1, h3, h4, h6, p, .selected-tags-status {
   transition: color 0.3s ease, text-shadow 0.3s ease, background-color 0.4s ease;
 }
 
-.page-btn.active {
-  color: #fff;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+.page-btn.active, .page-btn:hover {
+  color: #4ea1ff;
+  text-shadow: 0 0 8px rgba(78, 161, 255, 0.5);
+  background-color: rgba(78, 161, 255, 0.05);
 }
 
 .page-btn:hover {
@@ -196,7 +230,7 @@ h1, h3, h4, h6, p, .selected-tags-status {
 
 .selected-tags-status {
   font-weight: bold;
-  color: #fff;
+  color: #ccc;
   margin-top: 0;
   margin-right: 6px;
 }
@@ -294,7 +328,9 @@ h1, h3, h4, h6, p, .selected-tags-status {
 .project-card-link:hover .project-card {
   transform: scale(1.05);
   box-shadow: 0 0 20px rgba(255,255,255,0.2);
+  
 }
+
 
 /* Image wrapper for smooth hover */
 .card-image-wrapper {
@@ -461,6 +497,7 @@ h1, h3, h4, h6, p, .selected-tags-status {
 /* ============================
    Debug Borders
 ============================ */
+/*
 .app { outline: 2px solid blue; }
 .header { outline: 2px solid orange; }
 .top-bar { outline: 2px solid green; }
@@ -469,7 +506,7 @@ h1, h3, h4, h6, p, .selected-tags-status {
 .project-content { outline: 2px solid purple; }
 .project-media { border: 2px solid red; }
 .project-tags { border: 2px solid blue; }
-
+*/
 /* ============================
    Responsive Gallery
 ============================ */
@@ -510,7 +547,9 @@ h1, h3, h4, h6, p, .selected-tags-status {
 #project-right-sidebar h3 {
   font-size: 1.25rem;
   margin-bottom: 6px;
-  color: #fff;
+  color: #fff;  
   margin-top: 0;
   margin-left: 0;
 }
+
+
