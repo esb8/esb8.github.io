@@ -1,25 +1,44 @@
-/* Reset basic styles */
+/* ============================
+   Reset & Global Styles
+============================ */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Full app container */
+body {
+  background-color: #222; /* consistent page background */
+  font-family: "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
+}
+
+h1, h3, h4, h6, p, .selected-tags-status {
+  font-family: inherit;
+}
+
+/* ============================
+   App Layout
+============================ */
 .app {
   display: flex;
   flex-direction: column; /* top bar first, then content row */
 }
 
-
-/* Main content row: sidebar + gallery */
-.app > .content-row {
+.content-row {
   display: flex;
   flex-direction: row;
   flex: 1; /* take remaining height */
+  gap: 1rem;
 }
 
-/* Sidebar */
+.content-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================
+   Sidebar
+============================ */
 .side-bar {
   background-color: #222;
   color: #fff;
@@ -27,7 +46,6 @@
   padding: 20px;
 }
 
-/* Sidebar links */
 .side-bar ul {
   list-style: none;
 }
@@ -41,125 +59,45 @@
   text-decoration: none;
 }
 
-/* Main gallery container */
-.gallery-container {
-  background-color: #222;
-  width: 80%;
-  padding: 20px;
-  display: flex;
-  flex-wrap: wrap; /* allows multiple images per row */
-  gap: 12px;
-  min-height: 500px;
-}
-
-.project-card {
-  flex: 1 1 250px; /* grow, shrink, base width */
-  max-width: 300px; /* optional max width */
-  background-color: #444;
-  padding: 12px;
-  border-radius: 8px;
-  box-sizing: border-box;
-  color: #fff;
-  height:280px;   
-
-}
-
-.project-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 6px;
-}
-
-.project-card h3 {
-  margin: 5px 0 4px;
-  font-size: 1.1rem;
-}
-
-.project-card p {
-  font-size: 0.9rem;
-  color: #ddd;
-}
-
 /* ============================
-   Featured top gallery fixes
+   Top Bar
 ============================ */
-/* DEBUG: highlight main divs */
-.app {
-  outline: 2px solid blue; /* app container */
-}
-
-.header {
-  outline: 2px solid orange; /* header container */
-}
-
 .top-bar {
-  outline: 2px solid green; /* top bar */
-}
-
-.top-gallery {
-  width: 60%;                  /* desired width */
-  margin: 0 auto;              /* center */
-  padding: 0;
-  background-color: #222;      /* page color */
-  border-radius: 0;
-  overflow: hidden;            /* prevent overflow stretching */
-  margin-bottom: 20px; /* adjust px as needed */
-}
-
-.featured-gallery-wrapper {
-  width: 100%;
-  overflow: hidden;
-  padding: 0;
-  margin: 0;
-}
-
-.featured-gallery {
-  display: flex;
-  gap: 4px;
-  transition: transform 0.5s linear;
-  will-change: transform;
-  background-color: #222;      /* same as top-gallery */
-}
-
-.featured-gallery .project-card {
-  min-width: 150px;             /* small, fixed width */
-  flex-shrink: 0;
-  padding: 0;
-  margin: 0;
   background-color: #222;
-  border-radius: 0;
-  overflow: hidden;
+  color: #fff;
+  padding: 30px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+  line-height: 1.4;
 }
 
-.featured-gallery .project-card img {
-  width: 100%;
-  height: auto;                 /* scale properly */
-  object-fit: contain;          /* no cropping */
-  display: block;
+.top-bar-left {
+  max-width: 600px;
 }
 
-/* Keep page background consistent */
-body {
-  background-color: #222;       /* ensures side areas match */
+.top-bar-right {
+  display: flex;
+  gap: 15px;
+  align-items: center;
 }
 
-/* Optional: individual div colors for debugging */
-.side-bar {
-  outline: 2px solid purple;
+.top-bar-right img {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  cursor: pointer;
 }
 
-.gallery-container {
-  outline: 2px solid pink;
+.top-bar-right img:hover {
+  transform: translateY(-3px);
+  opacity: 0.8;
 }
 
-/* Top bar */
-.top-bar {
-  background-color: #222;       /* dark background */
-  color: #fff;                  /* text color */
-  padding: 30px 20px;           /* generous padding */
-  text-align: left;           /* center all text */
-  line-height: 1.4;             /* slightly compact spacing */
+.top-bar-right img[alt="LinkedIn"] {
+  filter: invert(1);
 }
 
 .top-bar h1 {
@@ -175,175 +113,17 @@ body {
 
 .top-bar p {
   font-size: 0.95rem;
-  max-width: 600px;     
-  text-align: left;        /* keep description readable */
-} 
-
-/* Make top bar a horizontal layout */
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center; /* vertical alignment */
-  gap: 20px;
-}
-
-/* Left side (text) */
-.top-bar-left {
   max-width: 600px;
 }
-.top-bar-right img[alt="LinkedIn"] {
-  filter: invert(1);
-}
 
-/* Right side (icons) */
-.top-bar-right {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
-
-/* Icon styling */
-.top-bar-right img {
-  width: 28px;
-  height: 28px;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-  cursor: pointer;
-}
-
-/* Hover effect */
-.top-bar-right img:hover {
-  transform: translateY(-3px);
-  opacity: 0.8;
-}
-
-/* Container */
+/* ============================
+   Page Selector Buttons
+============================ */
 .page-selector {
   display: flex;
   width: 100%;
   margin: 5px 0;
-  user-select: none; /* prevent accidental text selection */
-}
-
-/* Buttons as text, full height/width of their half */
-.page-btn {
-  flex: 1;                     
-  background: none;             
-  border: none;                 
-  color: #ccc;                  
-  font-family: 'Courier New', monospace; 
-  font-size: 1.5rem;
-  letter-spacing: 2px;          
-  text-align: center;           
-  padding: 5px 0;              
-  cursor: pointer;
-  transition: 
-    color 0.3s ease, 
-    text-shadow 0.3s ease, 
-    background-color 0.4s ease; /* added background transition */
-  position: relative;            /* for pseudo-element if needed */
-}
-
-/* Active button */
-.page-btn.active {
-  color: #fff;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-}
-
-/* Hover effect */
-.page-btn:hover {
-  color: #fff;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
-  background-color: rgba(255, 255, 255, 0.1); /* soft translucent white */
-  transition: 
-    color 0.3s ease, 
-    text-shadow 0.3s ease, 
-    background-color 0.4s ease; /* smooth fade-in */
-}
-
-.content-col{
-  display: flex;
-  flex-direction: column;
-}
-
-
-/* ============================
-   Sidebar tag styling
-============================ */
-
-   /* Sidebar tags */
-.tag-list, .selected-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 0;    /* removes top margin */
-}
-
-.tag-btn {
-  background-color: #555;       /* default gray */
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 20px;          /* pill shape */
-  border: none;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.tag-btn:hover {
-  background-color: #777;       /* slightly lighter on hover */
-}
-
-.tag-btn.selected {
-  background-color: #ccc;       /* light gray when selected */
-  color: #222;                  /* darker text for contrast */
-}
-
-/* Selected tags bar styling */
-
-/* Selected tags container */
-.selected-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap:8px;
-  margin-bottom: 12px;
-  align-items: center;
-  font-family: monospace;
-  font-size: 0.95rem;
-  color: #eee;
-}
-
-/* Status text */
-.selected-tags-status {
-  font-weight: bold;
-  color: #fff;
-  margin-top: 0;    /* removes top margin */
-  margin-right: 6px;
-}
-
-/* Pills inside status */
-.selected-tag-pill {
-  background-color: #888;
-  color: #fff;
-  border: none;
-  border-radius: 16px;
-  padding: 2px 8px;
-  gap: 5px;
-  font-family: monospace;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.selected-tags-pills {
-  display: inline-flex;
-  gap: 6px; /* add proper gap between each pill */
-  flex-wrap: wrap; /* wrap to new line if too many pills */
-  margin-left: 4px; /* small gap after the status text */
-}
-
-.selected-tag-pill:hover {
-  background-color: #bbb;
-  color: #222;
+  user-select: none;
 }
 
 .page-btn,
@@ -352,107 +132,175 @@ body {
   font-family: 'Courier New', monospace;
 }
 
-body, h1, h3, h6, h4, p, .selected-tags-status {
-  font-family: "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
-}
-
-
-
-/* Faint horizontal divider for sections */
-.section-divider {
+.page-btn {
+  flex: 1;
+  background: none;
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* faint white line */
-  margin: 8px 0; /* spacing above and below */
-}
-.project-card-link {
-  display: block;        /* just wrap the card */
-  text-decoration: none; /* remove underline */
-  color: inherit;        /* inherit text color */
-}
-
-.project-card-link .project-card {
-  width: 100%;           /* card fills the link completely */
-  margin: 0;             /* remove extra margin */
-  padding: 12px;         /* keep your existing padding */
-  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  color: #ccc;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  text-align: center;
+  padding: 5px 0;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease, text-shadow 0.3s ease, background-color 0.4s ease;
 }
 
-
-/* Image inside card */
-.project-card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 6px;
-  transition: transform 0.3s ease;
+.page-btn.active {
+  color: #fff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
-/* Project title */
-.project-card h3 {
-  margin: 8px 0 4px;
-  font-size: 1.1rem;
-  transition: text-shadow 0.3s ease;
+.page-btn:hover {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Card layout */
+/* ============================
+   Sidebar Tags
+============================ */
+.tag-list, .selected-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag-btn {
+  background-color: #555;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tag-btn:hover {
+  background-color: #777;
+}
+
+.tag-btn.selected {
+  background-color: #ccc;
+  color: #222;
+}
+
+/* Selected tags bar */
+.selected-tags {
+  margin-bottom: 12px;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #eee;
+}
+
+.selected-tags-status {
+  font-weight: bold;
+  color: #fff;
+  margin-top: 0;
+  margin-right: 6px;
+}
+
+.selected-tags-pills {
+  display: inline-flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-left: 4px;
+}
+
+.selected-tag-pill {
+  background-color: #888;
+  color: #fff;
+  border-radius: 16px;
+  padding: 2px 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.selected-tag-pill:hover {
+  background-color: #bbb;
+  color: #222;
+}
+
+/* ============================
+   Gallery / Project Cards
+============================ */
+.gallery-container,
+.featured-gallery-wrapper,
+.gallery-projects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.gallery-container {
+  background-color: #222;
+  width: 80%;
+  padding: 20px;
+  min-height: 500px;
+  flex: 1;
+}
+
 .project-card {
+  flex: 1 1 250px;
+  max-width: 300px;
+  background-color: #444;
+  padding: 12px;
+  border-radius: 8px;
+  color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-  overflow: visible;             
+  overflow: visible;
+  height: 280px;
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.6s ease-out;
 }
 
-/* Image */
 .project-card img {
-  width: auto;                   
-  max-width: 100%;               
-  height: 170px;                 
+  width: 100%;
+  height: 160px;
   object-fit: cover;
   border-radius: 6px;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), height 0.6s ease-out;
+  transition: transform 0.6s ease, height 0.6s ease;
 }
 
-/* Title */
 .project-card h3 {
   margin: 8px 0 4px;
   font-size: 1.1rem;
   text-align: center;
-  transition: text-shadow 0.6s ease-out, margin-top 0.6s ease-out;
+  transition: text-shadow 0.6s ease, margin-top 0.6s ease;
 }
 
-/* Description */
 .project-card p {
   font-size: 0.9rem;
   color: #ddd;
-  transition: opacity 0.3s ease, margin-top 0.3s ease;
   text-align: center;
+  transition: opacity 0.3s ease, margin-top 0.3s ease;
 }
-/*
-  /* Hover effects: smoother growth */
-  .project-card-link:hover .project-card {
-          /* slightly larger */
-    /*transform: scale(1.05);*/
-    z-index: 10;
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.55);
-    transform: scale(1.05);  /* grows smoothly */
-    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
-  }
-  /* Hover: hide description immediately 
-  .project-card-link:hover .project-card p {
-    opacity: 0;
-    margin-top: 0;
-  }
-*/
 
-/* Only animate the image wrapper */
+.project-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-card-link .project-card {
+  width: 100%;
+  margin: 0;
+  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+.project-card-link:hover .project-card {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+
+/* Image wrapper for smooth hover */
 .card-image-wrapper {
   overflow: hidden;
-  transition: transform 1s ease-out;
 }
 
-/* Smooth image scaling */
 .card-image-wrapper img {
   width: 100%;
   height: 160px;
@@ -461,72 +309,62 @@ body, h1, h3, h6, h4, p, .selected-tags-status {
   transition: transform 1s ease-out;
 }
 
-/* Hover effect */
-
-/* Card glow ONLY (no scaling = no blur) */
-.project-card-link:hover .project-card {
-  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+/* Featured Gallery */
+.featured-gallery {
+  display: flex;
+  gap: 4px;
+  transition: transform 0.5s linear;
+  will-change: transform;
+  background-color: #222;
 }
 
+.featured-gallery .project-card {
+  min-width: 150px;
+  flex-shrink: 0;
+  padding: 0;
+  margin: 0;
+  background-color: #222;
+  border-radius: 0;
+  overflow: hidden;
+}
 
+.featured-gallery .project-card img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
 
-
+/* ============================
+   Project Content
+============================ */
 .project-content {
   max-width: 75%;
   line-height: 1.6;
-  font-family: inherit;
-  color: inherit;
+  color: #fff;
 }
 
-/* Headings */
-.project-content h1,
-.project-content h2,
-.project-content h3, 
-.project-content h4,
-.project-content h5,
-.project-content h6
-.project-content p,
-.project-content ul,
-.project-content li,
-.project-content title
-{
-  color: #fff;
-}
-.project-content h1,
-.project-content h2,
-.project-content h3 {
-  color: #fff;
+.project-content h1, h2, h3 {
   margin-top: 1.5rem;
   margin-left: 50px;
-  text-decoration: underline; 
+
 }
 
-/* Paragraphs */
 .project-content p {
   margin: 0.5rem 0;
-  color: #fff;
   margin-left: 75px;
 }
 
-/* Lists */
 .project-content ul {
   padding-left: 1.5rem;
   margin-left: 50px;
-
 }
 
 .project-content li {
   margin: 0.4rem 0;
   margin-left: 50px;
-
 }
 
-.project-content {
-  outline: 2px solid purple;
-}
-
-
-/* Code blocks */
 .project-content pre {
   background: #1e1e1e;
   padding: 1rem;
@@ -540,7 +378,6 @@ body, h1, h3, h6, h4, p, .selected-tags-status {
   border-radius: 4px;
 }
 
-/* Links */
 .project-content a {
   color: #4ea1ff;
   text-decoration: none;
@@ -550,128 +387,32 @@ body, h1, h3, h6, h4, p, .selected-tags-status {
   text-decoration: underline;
 }
 
-/* Container for images */
 .project-media {
   display: flex;
   flex-direction: row;
-  gap: 1rem;              /* spacing between images */
-  align-items: flex-start; /* prevent stretching */
+  gap: 1rem;
+  align-items: flex-start;
 }
 
-/* Images inside container */
 #project-media .project-img {
-  max-width: 300px;    /* image will never exceed 500px wide */
-  max-height: 500px;   /* image will never exceed 500px tall */
-  width: auto;         /* keeps natural width if smaller than max */
-  height: auto;        /* keeps natural height if smaller than max */
+  max-width: 300px;
+  max-height: 500px;
+  width: auto;
+  height: auto;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
   display: block;
 }
 
-.project-media {
-  border: 2px solid red;
-}
-
-.project-tags {
-  border: 2px solid blue;
-}
-
-.gallery-container {
-  background-color: #222;
-  flex: 1;
-  padding: 20px;
-  display: flex;
-  flex-wrap: wrap; /* allows multiple images per row */
-  gap: 12px;
-  min-height: 500px;
-}
-
-
-.content-row {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-}
-
-/* Container for gallery below project content */
-.gallery-projects {
-  display: flex;
-  flex-wrap: wrap;     /* allow multiple rows if needed */
-  gap: 12px;           /* spacing between images */
-  margin-top: 1.5rem;
-}
-
-/* Individual gallery images */
-.gallery-projects {
+#project-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem; /* spacing */
-  margin-top: 1.5rem;
-}
-
-.gallery-projects .gallery-link {
-  flex: 1 1 calc(50% - 1rem); /* take ~50% width minus gap */
-  display: block;
-}
-
-.gallery-projects .gallery-img {
-  flex: 1 1 calc(50% - 1rem);
-  width: 100%;           /* fill the flex item */
-  max-width: 500px;      /* do not exceed this width */
-  max-height: 500px;     /* optional: cap height too */
-  height: auto;          /* maintain aspect ratio */
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  display: block;
-}
-
-/* Hover effect */
-.gallery-projects .gallery-img:hover {
-  transform: scale(1.05);
-}
-
-/* Responsive: 2 per row on medium screens */
-@media (max-width: 900px) {
-  .gallery-projects .gallery-link {
-    flex: 1 1 calc(50% - 1rem);
-  }
-}
-
-/* 1 per row on small screens */
-@media (max-width: 600px) {
-  .gallery-projects .gallery-link {
-    flex: 0.9 1 100%;
-    margin-right: 50px;
-  }
-  
-}
-
-.gallery-projects {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1.5rem;
-  padding: 0 30px; /* space from page edges */
-}
-.section {
-  margin-bottom: 2rem;
-  text-decoration: underline;
-  padding-left: 50px;
-  color: #fff;
-  font-size: medium;
-
+  gap: 6px;
 }
 
 .project-right-sidebar {
   display: flex;
   flex-direction: column;
-}
-
-#project-tags { 
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;   /* 🔥 THIS controls spacing */
 }
 
 #project-right-sidebar h3 {
@@ -692,16 +433,84 @@ body, h1, h3, h6, h4, p, .selected-tags-status {
   transition: all 0.2s ease;
   background-color: #555;
   color: #fff;
-  border-color: #444
+  border: 1px solid #444;
 }
 
 .project-link-btn:hover {
-  background-color: #555;
   transform: translateY(-2px);
   opacity: 0.8;
-  border-color: #444
 }
 
-.project-link-btn svg {
+/* ============================
+   Section Styling
+============================ */
+.section-divider {
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 8px 0;
+}
+
+.section {
+  margin-bottom: 2rem;
+  text-decoration: underline;
+  padding-left: 50px;
+  color: #fff;
+  font-size: medium;
+}
+
+/* ============================
+   Debug Borders
+============================ */
+.app { outline: 2px solid blue; }
+.header { outline: 2px solid orange; }
+.top-bar { outline: 2px solid green; }
+.side-bar { outline: 2px solid purple; }
+.gallery-container { outline: 2px solid pink; }
+.project-content { outline: 2px solid purple; }
+.project-media { border: 2px solid red; }
+.project-tags { border: 2px solid blue; }
+
+/* ============================
+   Responsive Gallery
+============================ */
+.gallery-projects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; /* spacing */
+  margin-top: 1.5rem;
+}
+
+.gallery-projects .gallery-link {
+  flex: 1 1 calc(50% - 1rem); /* take ~50% width minus gap */
   display: block;
+}
+
+.gallery-projects .gallery-img {
+  flex: 1 1 calc(50% - 1rem);
+  width: 100%;           /* fill the flex item */ 
+  max-width: 500px;      /* do not exceed this width */
+  max-height: 500px;     /* optional: cap height too */
+  height: auto;          /* maintain aspect ratio */
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  display: block;
+}
+
+.project-right-sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+#project-tags { 
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;   /* 🔥 THIS controls spacing */
+}
+
+#project-right-sidebar h3 {
+  font-size: 1.25rem;
+  margin-bottom: 6px;
+  color: #fff;
+  margin-top: 0;
+  margin-left: 0;
 }
