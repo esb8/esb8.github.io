@@ -80,6 +80,21 @@ h4 {
   line-height: 1.4;
 }
 
+.about-header {
+  text-align: left;
+  font-family: 'Courier New', monospace;
+  color: #ccc;
+  opacity: 0.75; /* 0 = invisible, 1 = fully opaque */
+  letter-spacing: 3px;
+  font-size: large;
+}
+
+
+.about-text {
+  text-align: left;
+  color: #fff;
+}
+
 .top-bar-left {
   max-width: 600px;
 }
@@ -139,6 +154,12 @@ h4 {
 
 .top-bar p {
   font-size: 0.95rem;
+  max-width: 600px;
+  color: #ccc;
+}
+.top-bar ul {
+  font-size: 0.95rem;
+  margin-left: 2.5%;
   max-width: 600px;
   color: #ccc;
 }

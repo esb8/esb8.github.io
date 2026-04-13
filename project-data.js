@@ -56,7 +56,7 @@ export const projects = [
   },
   {
     title: "7MHz Discrete Direction Conversion Receiver",
-    description: "a High Frequency (HF) discrete receiver built for HAM Radio applications",
+    description: "A High Frequency (HF) discrete receiver built for HAM Radio applications",
     link: "https://github.com/esb8/Direct-Conversion-Reciever",
     projectContent: "projects/DCR.md",
     image: "projects/images/DroneFC3D.png",
